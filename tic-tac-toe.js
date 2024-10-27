@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         square.addEventListener("click", () => {
             // Check if square is already filled
             if (!gameState[index]) {
+
                 // Update square with current player and add class
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
@@ -23,6 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Toggle player
                 currentPlayer = currentPlayer === "X" ? "O" : "X";
             }
+        });
+
+        // Exercise 3 - Add hover effect on mouse enter and remove on mouse leave
+        square.addEventListener("mouseenter", () => {
+            if (!gameState[index]) {
+                square.classList.add("hover");
+            }
+        });
+        
+        square.addEventListener("mouseleave", () => {
+            square.classList.remove("hover");
         });
     });
 });
