@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return null; // No winner yet
     };
 
+    // Function to check if a square is already taken
+    const isSquareTaken = (index) => {
+        return gameState[index] !== null || squares[index].classList.contains('X') || squares[index].classList.contains('O');
+    };
+
     // Function to reset the game
     const resetGame = () => {
         // Reset game state array
@@ -57,9 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     squares.forEach((square, index) => {
-        square.addEventListener("click", () => {
-            // Check if square is already filled
-            if (!gameState[index]) {
+        square.addEventListener("click", (e) => {
+            // Only proceed if the square is empty
+            if (!isSquareTaken(index)) {
                 // Update square with current player and add class
                 square.textContent = currentPlayer;
                 square.classList.add(currentPlayer);
@@ -76,11 +81,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     currentPlayer = currentPlayer === "X" ? "O" : "X";
                 }
             }
+            // Prevent any default behavior or bubbling
+            e.preventDefault();
         });
 
         // Exercise 3 - Add hover effect on mouse enter and remove on mouse leave
         square.addEventListener("mouseenter", () => {
-            if (!gameState[index]) {
+            if (!isSquareTaken(index)) {
                 square.classList.add("hover");
             }
         });
