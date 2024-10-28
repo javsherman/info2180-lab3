@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPlayer = "X";
     const gameState = Array(9).fill(null);
     const statusDiv = document.querySelector("#status");
+    const newGameBtn = document.querySelector(".btn");
 
     // Function to check for winner
     const checkWinner = () => {
@@ -34,6 +35,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
         return null; // No winner yet
+    };
+
+    // Function to reset the game
+    const resetGame = () => {
+        // Reset game state array
+        gameState.fill(null);
+        
+        // Reset current player to X
+        currentPlayer = "X";
+        
+        // Clear all squares
+        squares.forEach(square => {
+            square.textContent = "";
+            square.classList.remove("X", "O");
+        });
+        
+        // Reset status message
+        statusDiv.textContent = "Move your mouse over a square and click to play an X or an O.";
+        statusDiv.classList.remove("you-won");
     };
 
     squares.forEach((square, index) => {
@@ -69,4 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             square.classList.remove("hover");
         });
     });
+
+    // Add click event listener to New Game button
+    newGameBtn.addEventListener("click", resetGame);
 });
