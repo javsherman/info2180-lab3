@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Exercise 1 - Layout the board
+    //Laying out the board
     const squares = document.querySelectorAll("#board div");
     squares.forEach(square => {
         square.classList.add("square");
     });
 
-    // Exercise 2 - Add an X or O to a square when clicked
+    //Adding an X or O to a square when clicked
     let currentPlayer = "X";
     const gameState = Array(9).fill(null);
     const statusDiv = document.querySelector("#status");
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
         });
 
-        // Exercise 3 - Add hover effect on mouse enter and remove on mouse leave
+        //Add hover effect on mouse enter and remove on mouse leave
         square.addEventListener("mouseenter", () => {
             if (!isSquareTaken(index)) {
                 square.classList.add("hover");
